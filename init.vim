@@ -2,7 +2,14 @@ set nu
 set rnu
 set scrolloff=8
 set incsearch
-let mapleader=" "
+set nohlsearch
+set tabstop=2 shiftwidth=2 expandtab
+set hidden
+set noerrorbells
+set nowrap
+set signcolumn=yes
+set completeopt=menuone,noinsert,noselect
+
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
@@ -20,16 +27,12 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-lua/completion-nvim'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
-set tabstop=2 shiftwidth=2 expandtab
 colorscheme gruvbox
 
-set completeopt=menuone,noinsert,noselect
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-lua require('lsp')
-lua require('telescope').load_extension('fzf')
-
+" Training wheels
 nnoremap <Left> :echo "No left for you!"<CR>
 vnoremap <Left> :<C-u>echo "No left for you!"<CR>
 inoremap <Left> <C-o>:echo "No left for you!"<CR>
@@ -46,8 +49,21 @@ nnoremap <Down> :echo "No down for you!"<CR>
 vnoremap <Down> :<C-u>echo "No down for you!"<CR>
 inoremap <Down> <C-o>:echo "No down for you!"<CR>
 
-nnoremap <Leader>ff :lua require('telescope.builtin').find_files() <CR>
+" Move line(s) up and down with J / K 
+nnoremap J :m +1<CR>==
+nnoremap K :m -2<CR>==
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+nnoremap <C-p> :lua require('telescope.builtin').find_files() <CR>
 nnoremap <Leader>fb :lua require('telescope.builtin').buffers() <CR>
+
+let mapleader=" "
+
+" Set up LSP
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+lua require('lsp')
+lua require('telescope').load_extension('fzf')
+lua require('telescope').setup{ file_ignore_patterns = { '.*/node_modules/.*' } }
 
 let g:lualine = {
 		\'options' : {

@@ -8,7 +8,11 @@ set hidden
 set noerrorbells
 set nowrap
 set signcolumn=yes
+
+" Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
+" Avoid showing message extra message when using completion
+set shortmess+=c
 
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
@@ -57,11 +61,18 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap <C-p> :lua require('telescope.builtin').find_files() <CR>
 nnoremap <Leader>fb :lua require('telescope.builtin').buffers() <CR>
 
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+imap <silent> <c-Space> <Plug>(completion_trigger)
+
 let mapleader=" "
 
 " Set up LSP
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 lua require('lsp')
+
+
 lua require('telescope').load_extension('fzf')
 lua require('telescope').setup{ file_ignore_patterns = { '.*/node_modules/.*' } }
 

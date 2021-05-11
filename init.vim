@@ -36,6 +36,8 @@ call plug#end()
 
 colorscheme gruvbox
 
+let mapleader=" "
+
 " Training wheels
 nnoremap <Left> :echo "No left for you!"<CR>
 vnoremap <Left> :<C-u>echo "No left for you!"<CR>
@@ -53,6 +55,10 @@ nnoremap <Down> :echo "No down for you!"<CR>
 vnoremap <Down> :<C-u>echo "No down for you!"<CR>
 inoremap <Down> <C-o>:echo "No down for you!"<CR>
 
+" Insert lines
+nnoremap <silent><A-o> :set paste<CR>m`o<Esc>``:set nopaste<CR>
+nnoremap <silent><A-O> :set paste<CR>m`O<Esc>``:set nopaste<CR>
+
 " Move line(s) up and down with J / K 
 nnoremap J :m +1<CR>==
 nnoremap K :m -2<CR>==
@@ -66,7 +72,22 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 imap <silent> <c-Space> <Plug>(completion_trigger)
 
-let mapleader=" "
+:nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
+
+" Set up win32 yanking
+set clipboard+=unnamedplus
+let g:clipboard = {
+          \   'name': 'wanking',
+          \   'copy': {
+          \      '+': 'wank.exe -i --crlf',
+          \      '*': 'wank.exe -i --crlf',
+          \    },
+          \   'paste': {
+          \      '+': 'wank.exe -o --lf',
+          \      '*': 'wank.exe -o --lf',
+          \   },
+          \   'cache_enabled': 0,
+          \ }
 
 " Set up LSP
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']

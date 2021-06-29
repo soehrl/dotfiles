@@ -32,6 +32,7 @@ Plug 'kabouzeid/nvim-lspinstall'
 Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-lua/completion-nvim'
 Plug 'tpope/vim-fugitive'
+Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 call plug#end()
 
 colorscheme gruvbox

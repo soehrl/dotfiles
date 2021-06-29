@@ -1,5 +1,6 @@
 set nu
 set rnu
+set exrc " Allow project specific vimrc files
 set scrolloff=8
 set incsearch
 set nohlsearch
@@ -24,7 +25,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'tpope/vim-commentary'
 Plug 'hoob3rt/lualine.nvim'
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'gruvbox-community/gruvbox'
 Plug 'neovim/nvim-lspconfig'
@@ -32,6 +33,10 @@ Plug 'kabouzeid/nvim-lspinstall'
 Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-lua/completion-nvim'
 Plug 'tpope/vim-fugitive'
+Plug 'lambdalisue/suda.vim'
+Plug 'nvim-telescope/telescope-frecency.nvim'
+Plug 'tami5/sql.nvim'
+Plug 'rhysd/vim-clang-format'
 call plug#end()
 
 colorscheme gruvbox
@@ -59,43 +64,82 @@ inoremap <Down> <C-o>:echo "No down for you!"<CR>
 nnoremap <silent><A-o> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><A-O> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
+" clang-format
+map <C-I> :pyf ~/.config/nvim/clang-format.py<cr>
+imap <C-I> <c-o>:pyf ~/.config/nvim/clang-format.py<cr>
+
+" (Un-)comment lines
+autocmd FileType h setlocal commentstring=//\ %s
+autocmd FileType c setlocal commentstring=//\ %s
+autocmd FileType hpp setlocal commentstring=//\ %s
+autocmd FileType cpp setlocal commentstring=//\ %s
+nmap <C-_> gcc
+vmap <C-_> gc
+
 " Move line(s) up and down with J / K 
 nnoremap J :m +1<CR>==
 nnoremap K :m -2<CR>==
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
+" Find files / buffers
+" nnoremap <C-p> :lua require('telescope').extensions.frecency.frecency() <CR>
 nnoremap <C-p> :lua require('telescope.builtin').find_files() <CR>
 nnoremap <Leader>fb :lua require('telescope.builtin').buffers() <CR>
 
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-imap <silent> <c-Space> <Plug>(completion_trigger)
+" Goto Definition
+nnoremap gd :lua vim.lsp.buf.definition()<CR>
+
+" Use ctrl + backspace to 
+" inoremap <C-BS> <Esc>vbda
+
+" Put cursor in between parens
+" inoremap <> <><Left>
+" inoremap <>> <>
+" inoremap {} {}<Left>
+" inoremap {}} {}
+" inoremap [] []<Left>
+" inoremap []] []
+" inoremap () ()<Left>
+" inoremap ()) ()
+" inoremap "" ""<Left>
+" inoremap """ ""
+" inoremap '' ''<Left>
+" inoremap ''' ''
+" inoremap `` ``<Left>
+" inoremap ``` ``
 
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 " Set up win32 yanking
-set clipboard+=unnamedplus
-let g:clipboard = {
-          \   'name': 'wanking',
-          \   'copy': {
-          \      '+': 'wank.exe -i --crlf',
-          \      '*': 'wank.exe -i --crlf',
-          \    },
-          \   'paste': {
-          \      '+': 'wank.exe -o --lf',
-          \      '*': 'wank.exe -o --lf',
-          \   },
-          \   'cache_enabled': 0,
-          \ }
+" TODO: this should only be enabled on windows
+" set clipboard+=unnamedplus
+" let g:clipboard = {
+"           \   'name': 'wanking',
+"           \   'copy': {
+"           \      '+': 'wank.exe -i --crlf',
+"           \      '*': 'wank.exe -i --crlf',
+"           \    },
+"           \   'paste': {
+"           \      '+': 'wank.exe -o --lf',
+"           \      '*': 'wank.exe -o --lf',
+"           \   },
+"           \   'cache_enabled': 0,
+"           \ }
 
 " Set up LSP
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 lua require('lsp')
 
+" let g:sql_clib_path = '/usr/lib/x86_64-linux-gnu/libsqlite3.so'
+" lua require('telescope').load_extension('fzf')
+" lua require('telescope').load_extension("frecency")
+" lua require('telescope').setup{ file_ignore_patterns = { '.*/node_modules/.*' } }
 
-lua require('telescope').load_extension('fzf')
-lua require('telescope').setup{ file_ignore_patterns = { '.*/node_modules/.*' } }
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+imap <silent> <c-Space> <Plug>(completion_trigger)
 
 let g:lualine = {
 		\'options' : {
@@ -124,3 +168,4 @@ let g:lualine = {
 					\ 'extensions': ['fzf'],
 					\ 		        }
 lua require("lualine").setup()
+set secure

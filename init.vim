@@ -39,6 +39,8 @@ Plug 'lambdalisue/suda.vim'
 Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'tami5/sql.nvim'
 Plug 'rhysd/vim-clang-format'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/playground'
 call plug#end()
 
 colorscheme gruvbox

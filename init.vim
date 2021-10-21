@@ -139,6 +139,7 @@ nnoremap <Leader>e :lua require('telescope.builtin').file_browser({ cwd = vim.fn
 nnoremap <Leader>E :lua require('telescope.builtin').file_browser() <CR>
 nnoremap <Leader>gs :G<CR>
 nnoremap <Leader>gc :G commit<CR>
+nnoremap <Leader>gp :G push<CR>
 
 " Goto Definition
 nnoremap gd :lua vim.lsp.buf.definition()<CR>

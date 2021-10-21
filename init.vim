@@ -39,13 +39,15 @@ Plug 'lambdalisue/suda.vim'
 Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'tami5/sql.nvim'
 Plug 'rhysd/vim-clang-format'
+Plug 'justinmk/vim-sneak'
+Plug 'tikhomirov/vim-glsl'
 call plug#end()
 
 colorscheme gruvbox
 
 let mapleader=" "
 
-let g:vimspector_enable_mappings = 'HUMAN'
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 nmap <Leader>dx :VimspectorReset<CR>
 xmap <Leader>dx :VimspectorReset<CR>
 
@@ -60,29 +62,45 @@ nmap <Leader>dfi <Plug>VimspectorDownFrame
 nmap <Leader>l :LspStop<CR>:LspStart<CR>
 
 " Training wheels
-nnoremap <Left> :echo "No left for you!"<CR>
-vnoremap <Left> :<C-u>echo "No left for you!"<CR>
-inoremap <Left> <C-o>:echo "No left for you!"<CR>
+" nnoremap <Left> :echo "No left for you!"<CR>
+" vnoremap <Left> :<C-u>echo "No left for you!"<CR>
+" inoremap <Left> <C-o>:echo "No left for you!"<CR>
 
-nnoremap <Right> :echo "No right for you!"<CR>
-vnoremap <Right> :<C-u>echo "No right for you!"<CR>
-inoremap <Right> <C-o>:echo "No right for you!"<CR>
+" nnoremap <Right> :echo "No right for you!"<CR>
+" vnoremap <Right> :<C-u>echo "No right for you!"<CR>
+" inoremap <Right> <C-o>:echo "No right for you!"<CR>
 
-nnoremap <Up> :echo "No up for you!"<CR>
-vnoremap <Up> :<C-u>echo "No up for you!"<CR>
-inoremap <Up> <C-o>:echo "No up for you!"<CR>
+" nnoremap <Up> :echo "No up for you!"<CR>
+" vnoremap <Up> :<C-u>echo "No up for you!"<CR>
+" inoremap <Up> <C-o>:echo "No up for you!"<CR>
 
-nnoremap <Down> :echo "No down for you!"<CR>
-vnoremap <Down> :<C-u>echo "No down for you!"<CR>
-inoremap <Down> <C-o>:echo "No down for you!"<CR>
+" nnoremap <Down> :echo "No down for you!"<CR>
+" vnoremap <Down> :<C-u>echo "No down for you!"<CR>
+" inoremap <Down> <C-o>:echo "No down for you!"<CR>
 
 " Insert lines
 nnoremap <silent><A-o> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><A-O> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
 " clang-format
-map <C-I> :py3f ~/.config/nvim/clang-format.py<cr>
-imap <C-I> <c-o>:py3f ~/.config/nvim/clang-format.py<cr>
+map <C-f> :py3f ~/.config/nvim/clang-format.py<cr>
+" nmap <A-f> ggVG:py3f ~/.config/nvim/clang-format.py<cr>
+imap <C-f> <Esc>:py3f ~/.config/nvim/clang-format.py<cr>i
+
+" make Y normal
+nmap Y y$
+
+" replace stuff
+nmap R "_Dp
+nmap rw "_dwP
+nmap riw "_diwP
+nmap ri( "_di(P
+nmap ri[ "_di[P
+nmap ri{ "_di{P
+nmap ri< "_di<P
+nmap ri' "_di'P
+nmap ri" "_di"P
+nmap ri` "_di`P
 
 " (Un-)comment lines
 autocmd FileType h setlocal commentstring=//\ %s
@@ -92,19 +110,41 @@ autocmd FileType cpp setlocal commentstring=//\ %s
 nmap <C-_> gcc
 vmap <C-_> gc
 
+" Keep selection after indenting
+vnoremap < <gv
+vnoremap > >gv
+
 " Move line(s) up and down with J / K 
 nnoremap J :m +1<CR>==
 nnoremap K :m -2<CR>==
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
+" Easier in-line navigation
+nmap f <Plug>Sneak_s
+nmap F <Plug>Sneak_S
+
 " Find files / buffers
 " nnoremap <C-p> :lua require('telescope').extensions.frecency.frecency() <CR>
+"
+" currently contains only bullshit:
+" lua require('telescope-setup')
 nnoremap <C-p> :lua require('telescope.builtin').find_files() <CR>
+nnoremap <A-p> :lua require('telescope.builtin').oldfiles() <CR>
 nnoremap <Leader>fb :lua require('telescope.builtin').buffers() <CR>
+nnoremap <A-/> :lua require('telescope.builtin').live_grep() <CR>
+nnoremap <Leader>gl :lua require('telescope.builtin').git_commits() <CR>
+nnoremap <Leader>gb :lua require('telescope.builtin').git_branches() <CR>
+nnoremap <Leader>e :lua require('telescope.builtin').file_browser({ cwd = vim.fn.expand('%:p:h') }) <CR>
+nnoremap <Leader>E :lua require('telescope.builtin').file_browser() <CR>
+nnoremap <Leader>gs :G<CR>
+nnoremap <Leader>gc :G commit<CR>
 
 " Goto Definition
 nnoremap gd :lua vim.lsp.buf.definition()<CR>
+
+" Code actions
+nnoremap <Leader>c :lua vim.lsp.buf.code_action()<CR>
 
 " Use ctrl + backspace to 
 " inoremap <C-BS> <Esc>vbda

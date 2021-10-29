@@ -40,6 +40,8 @@ Plug 'lambdalisue/suda.vim'
 Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'tami5/sql.nvim'
 Plug 'rhysd/vim-clang-format'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/playground'
 Plug 'justinmk/vim-sneak'
 Plug 'tikhomirov/vim-glsl'
 call plug#end()

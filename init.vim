@@ -22,9 +22,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'wellle/targets.vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'tpope/vim-commentary'
-Plug 'hoob3rt/lualine.nvim'
 " Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'gruvbox-community/gruvbox'
@@ -47,7 +48,7 @@ colorscheme gruvbox
 
 let mapleader=" "
 
-let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+let g:vimspector_enable_mappings = 'HUMAN'
 nmap <Leader>dx :VimspectorReset<CR>
 xmap <Leader>dx :VimspectorReset<CR>
 
@@ -58,6 +59,7 @@ xmap <Leader>di <Plug>VimspectorBalloonEval
 
 nmap <Leader>dfo <Plug>VimspectorUpFrame
 nmap <Leader>dfi <Plug>VimspectorDownFrame
+nmap <F12> <Plug>VimspectorStepOut
 
 nmap <Leader>l :LspStop<CR>:LspStart<CR>
 
@@ -198,31 +200,32 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 imap <silent> <c-Space> <Plug>(completion_trigger)
 
-let g:lualine = {
-		\'options' : {
-			\  'theme' : 'gruvbox',
-			\  'section_separators' : ['', ''],
-			\  'component_separators' : ['', ''],
-			\  'disabled_filetypes' : [],
-			\  'icons_enabled' : v:true,
-			\ },
-			\'sections' : {
-				\  'lualine_a' : [ ['mode', {'upper': v:true,},], ],
-				\  'lualine_b' : [ ['branch', {'icon': '',}, ], ],
-				\  'lualine_c' : [ ['filename', {'file_status': v:true,},], ],
-				\  'lualine_x' : [ 'encoding', 'fileformat', 'filetype' ],
-				\  'lualine_y' : [ 'progress' ],
-				\  'lualine_z' : [ 'location'  ],
-				\    },
-				\'inactive_sections' : {
-					\  'lualine_a' : [  ],
-					\  'lualine_b' : [  ],
-					\  'lualine_c' : [ 'filename' ],
-					\  'lualine_x' : [ 'location' ],
-					\  'lualine_y' : [  ],
-					\  'lualine_z' : [  ],
-					\ },
-					\ 'extensions': ['fzf'],
-					\ 		        }
-lua require("lualine").setup()
+lua require('lualine-setup');
+" let g:lualine = {
+" 		\'options' : {
+" 			\  'theme' : 'gruvbox',
+" 			\  'section_separators' : ['', ''],
+" 			\  'component_separators' : ['', ''],
+" 			\  'disabled_filetypes' : [],
+" 			\  'icons_enabled' : v:true,
+" 			\ },
+" 			\'sections' : {
+" 				\  'lualine_a' : [ ['mode', {'upper': v:true,},], ],
+" 				\  'lualine_b' : [ ['branch', {'icon': '',}, ], ],
+" 				\  'lualine_c' : [ ['filename', {'file_status': v:true,},], ],
+" 				\  'lualine_x' : [ 'encoding', 'fileformat', 'filetype' ],
+" 				\  'lualine_y' : [ 'progress' ],
+" 				\  'lualine_z' : [ 'location'  ],
+" 				\    },
+" 				\'inactive_sections' : {
+" 					\  'lualine_a' : [  ],
+" 					\  'lualine_b' : [  ],
+" 					\  'lualine_c' : [ 'filename' ],
+" 					\  'lualine_x' : [ 'location' ],
+" 					\  'lualine_y' : [  ],
+" 					\  'lualine_z' : [  ],
+" 					\ },
+" 					\ 'extensions': ['fzf'],
+" 					\ 		        }
+" lua require("lualine").setup()
 set secure

@@ -9,6 +9,7 @@ set hidden
 set noerrorbells
 set nowrap
 set signcolumn=yes
+set inccommand=nosplit
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect

@@ -33,7 +33,14 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'ryanoasis/vim-devicons'
-Plug 'nvim-lua/completion-nvim'
+
+" Autocompletion
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
 Plug 'tpope/vim-fugitive'
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 Plug 'puremourning/vimspector'
@@ -45,13 +52,14 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
 Plug 'justinmk/vim-sneak'
 Plug 'tikhomirov/vim-glsl'
+Plug 'ThePrimeagen/harpoon'
 call plug#end()
 
 colorscheme gruvbox
 
 let mapleader=" "
 
-let g:vimspector_enable_mappings = 'HUMAN'
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 nmap <Leader>dx :VimspectorReset<CR>
 xmap <Leader>dx :VimspectorReset<CR>
 
@@ -62,7 +70,8 @@ xmap <Leader>di <Plug>VimspectorBalloonEval
 
 nmap <Leader>dfo <Plug>VimspectorUpFrame
 nmap <Leader>dfi <Plug>VimspectorDownFrame
-nmap <F12> <Plug>VimspectorStepOut
+" nmap <F11> <Plug>VimspectorStepInto
+" nmap <F12> <Plug>VimspectorStepOut
 
 nmap <Leader>l :LspStop<CR>:LspStart<CR>
 
@@ -138,13 +147,29 @@ nnoremap <C-p> :lua require('telescope.builtin').find_files() <CR>
 nnoremap <A-p> :lua require('telescope.builtin').oldfiles() <CR>
 nnoremap <Leader>fb :lua require('telescope.builtin').buffers() <CR>
 nnoremap <A-/> :lua require('telescope.builtin').live_grep() <CR>
-nnoremap <Leader>gl :lua require('telescope.builtin').git_commits() <CR>
-nnoremap <Leader>gb :lua require('telescope.builtin').git_branches() <CR>
 nnoremap <Leader>e :lua require('telescope.builtin').file_browser({ cwd = vim.fn.expand('%:p:h') }) <CR>
 nnoremap <Leader>E :lua require('telescope.builtin').file_browser() <CR>
+
 nnoremap <Leader>gs :G<CR>
+nnoremap <Leader>gl :lua require('telescope.builtin').git_commits() <CR>
+nnoremap <Leader>gb :lua require('telescope.builtin').git_branches() <CR>
+nnoremap <Leader>gt :lua require('telescope.builtin').git_stash() <CR>
 nnoremap <Leader>gc :G commit<CR>
 nnoremap <Leader>gp :G push<CR>
+
+nnoremap <Leader>pm :lua require("harpoon.mark").add_file() <CR>
+nnoremap <Leader>p1 :lua require("harpoon.ui").nav_file(1) <CR>
+nnoremap <Leader>p2 :lua require("harpoon.ui").nav_file(2) <CR>
+nnoremap <Leader>p3 :lua require("harpoon.ui").nav_file(3) <CR>
+nnoremap <Leader>p4 :lua require("harpoon.ui").nav_file(4) <CR>
+nnoremap <Leader>p5 :lua require("harpoon.ui").nav_file(5) <CR>
+nnoremap <Leader>p6 :lua require("harpoon.ui").nav_file(6) <CR>
+nnoremap <Leader>p7 :lua require("harpoon.ui").nav_file(7) <CR>
+nnoremap <Leader>p8 :lua require("harpoon.ui").nav_file(8) <CR>
+nnoremap <Leader>p9 :lua require("harpoon.ui").nav_file(9) <CR>
+nnoremap <Leader>p0 :lua require("harpoon.ui").nav_file(10) <CR>
+nnoremap <Leader>p1 :lua require("harpoon.ui").nav_file(1) <CR>
+nnoremap <Leader>pp :lua require("harpoon.ui").toggle_quick_menu() <CR>
 
 " Goto Definition
 nnoremap gd :lua vim.lsp.buf.definition()<CR>
@@ -189,46 +214,8 @@ nnoremap <Leader>c :lua vim.lsp.buf.code_action()<CR>
 "           \   'cache_enabled': 0,
 "           \ }
 
-" Set up LSP
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-lua require('lsp')
-
-" let g:sql_clib_path = '/usr/lib/x86_64-linux-gnu/libsqlite3.so'
-" lua require('telescope').load_extension('fzf')
-" lua require('telescope').load_extension("frecency")
-" lua require('telescope').setup{ file_ignore_patterns = { '.*/node_modules/.*' } }
-
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-imap <silent> <c-Space> <Plug>(completion_trigger)
-
+lua require('nvim-cmp-setup')
 lua require('lualine-setup');
-" let g:lualine = {
-" 		\'options' : {
-" 			\  'theme' : 'gruvbox',
-" 			\  'section_separators' : ['', ''],
-" 			\  'component_separators' : ['', ''],
-" 			\  'disabled_filetypes' : [],
-" 			\  'icons_enabled' : v:true,
-" 			\ },
-" 			\'sections' : {
-" 				\  'lualine_a' : [ ['mode', {'upper': v:true,},], ],
-" 				\  'lualine_b' : [ ['branch', {'icon': '',}, ], ],
-" 				\  'lualine_c' : [ ['filename', {'file_status': v:true,},], ],
-" 				\  'lualine_x' : [ 'encoding', 'fileformat', 'filetype' ],
-" 				\  'lualine_y' : [ 'progress' ],
-" 				\  'lualine_z' : [ 'location'  ],
-" 				\    },
-" 				\'inactive_sections' : {
-" 					\  'lualine_a' : [  ],
-" 					\  'lualine_b' : [  ],
-" 					\  'lualine_c' : [ 'filename' ],
-" 					\  'lualine_x' : [ 'location' ],
-" 					\  'lualine_y' : [  ],
-" 					\  'lualine_z' : [  ],
-" 					\ },
-" 					\ 'extensions': ['fzf'],
-" 					\ 		        }
-" lua require("lualine").setup()
+nmap <F11> <Plug>VimspectorStepInto
 set secure

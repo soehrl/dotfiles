@@ -35,6 +35,8 @@ Plug 'kabouzeid/nvim-lspinstall'
 Plug 'ryanoasis/vim-devicons'
 
 " Autocompletion
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -176,6 +178,9 @@ nnoremap gd :lua vim.lsp.buf.definition()<CR>
 
 " Code actions
 nnoremap <Leader>c :lua vim.lsp.buf.code_action()<CR>
+
+imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
 
 " Use ctrl + backspace to 
 " inoremap <C-BS> <Esc>vbda

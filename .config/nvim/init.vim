@@ -218,6 +218,8 @@ smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j
 "           \   },
 "           \   'cache_enabled': 0,
 "           \ }
+" Yanking now also copies to clipboard
+set clipboard+=unnamedplus
 
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 lua require('nvim-cmp-setup')

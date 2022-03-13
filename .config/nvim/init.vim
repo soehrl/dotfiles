@@ -26,13 +26,16 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-frecency.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'tpope/vim-commentary'
 " Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'gruvbox-community/gruvbox'
 Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'ryanoasis/vim-devicons'
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 " Autocompletion
 Plug 'hrsh7th/vim-vsnip'
@@ -47,7 +50,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 Plug 'puremourning/vimspector'
 Plug 'lambdalisue/suda.vim'
-Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'tami5/sql.nvim'
 Plug 'rhysd/vim-clang-format'
 Plug 'nvim-treesitter/nvim-treesitter'
@@ -55,11 +57,30 @@ Plug 'nvim-treesitter/playground'
 Plug 'justinmk/vim-sneak'
 Plug 'tikhomirov/vim-glsl'
 Plug 'ThePrimeagen/harpoon'
+Plug 'rhysd/vim-grammarous'
 call plug#end()
 
 colorscheme gruvbox
 
 let mapleader=" "
+
+" Language tool:
+let g:grammarous#use_vim_spelllang
+nmap <Leader>lc :GrammarousCheck<CR>
+nmap <Leader>lq <Plug>(grammarous-reset)
+nmap <Leader>lw <Plug>(grammarous-open-info-window)
+nmap <buffer><Leader>lf <Plug>(grammarous-fixit)
+nmap <buffer><Leader>li <Plug>(grammarous-remove-error)
+nmap <buffer><Leader>ln <Plug>(grammarous-move-to-next-error)
+nmap <buffer><Leader>lp <Plug>(grammarous-move-to-previous-error)
+let g:grammarous#hooks = {}
+" function! g:grammarous#hooks.on_check(errs) abort
+" endfunction
+
+" function! g:grammarous#hooks.on_reset(errs) abort
+"     nunmap <buffer><C-n>
+"     nunmap <buffer><C-p>
+" endfunction
 
 let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 nmap <Leader>dx :VimspectorReset<CR>
@@ -75,7 +96,7 @@ nmap <Leader>dfi <Plug>VimspectorDownFrame
 " nmap <F11> <Plug>VimspectorStepInto
 " nmap <F12> <Plug>VimspectorStepOut
 
-nmap <Leader>l :LspStop<CR>:LspStart<CR>
+nmap <Leader>lr :LspStop<CR>:LspStart<CR>
 
 " Training wheels
 " nnoremap <Left> :echo "No left for you!"<CR>
@@ -145,12 +166,13 @@ nmap F <Plug>Sneak_S
 "
 " currently contains only bullshit:
 " lua require('telescope-setup')
+lua require("telescope").load_extension "file_browser"
 nnoremap <C-p> :lua require('telescope.builtin').find_files() <CR>
 nnoremap <A-p> :lua require('telescope.builtin').oldfiles() <CR>
 nnoremap <Leader>fb :lua require('telescope.builtin').buffers() <CR>
 nnoremap <A-/> :lua require('telescope.builtin').live_grep() <CR>
-nnoremap <Leader>e :lua require('telescope.builtin').file_browser({ cwd = vim.fn.expand('%:p:h') }) <CR>
-nnoremap <Leader>E :lua require('telescope.builtin').file_browser() <CR>
+nnoremap <Leader>e :lua require('telescope').extensions.file_browser.file_browser({ cwd = vim.fn.expand('%:p:h') }) <CR>
+nnoremap <Leader>E :lua require('telescope').extensions.file_browser.file_browser() <CR>
 
 nnoremap <Leader>gs :G<CR>
 nnoremap <Leader>gl :lua require('telescope.builtin').git_commits() <CR>

@@ -33,7 +33,8 @@ Plug 'tpope/vim-commentary'
 " Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'gruvbox-community/gruvbox'
 Plug 'neovim/nvim-lspconfig'
-Plug 'kabouzeid/nvim-lspinstall'
+" Plug 'kabouzeid/nvim-lspinstall'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'ryanoasis/vim-devicons'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 

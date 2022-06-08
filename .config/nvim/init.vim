@@ -195,6 +195,28 @@ nnoremap <Leader>p9 :lua require("harpoon.ui").nav_file(9) <CR>
 nnoremap <Leader>p0 :lua require("harpoon.ui").nav_file(10) <CR>
 nnoremap <Leader>p1 :lua require("harpoon.ui").nav_file(1) <CR>
 nnoremap <Leader>pp :lua require("harpoon.ui").toggle_quick_menu() <CR>
+nnoremap <Leader>c1 :lua require("harpoon.tmux").sendCommand(".1", 1) <CR>
+nnoremap <Leader>c2 :lua require("harpoon.tmux").sendCommand(".1", 2) <CR>
+nnoremap <Leader>c3 :lua require("harpoon.tmux").sendCommand(".1", 3) <CR>
+nnoremap <Leader>c4 :lua require("harpoon.tmux").sendCommand(".1", 4) <CR>
+nnoremap <Leader>c5 :lua require("harpoon.tmux").sendCommand(".1", 5) <CR>
+nnoremap <Leader>c6 :lua require("harpoon.tmux").sendCommand(".1", 6) <CR>
+nnoremap <Leader>c7 :lua require("harpoon.tmux").sendCommand(".1", 7) <CR>
+nnoremap <Leader>c8 :lua require("harpoon.tmux").sendCommand(".1", 8) <CR>
+nnoremap <Leader>c9 :lua require("harpoon.tmux").sendCommand(".1", 9) <CR>
+nnoremap <Leader>c0 :lua require("harpoon.tmux").sendCommand(".1", 10) <CR>
+nnoremap <Leader>C1 :lua require("harpoon.tmux").sendCommand(".2", 1) <CR>
+nnoremap <Leader>C2 :lua require("harpoon.tmux").sendCommand(".2", 2) <CR>
+nnoremap <Leader>C3 :lua require("harpoon.tmux").sendCommand(".2", 3) <CR>
+nnoremap <Leader>C4 :lua require("harpoon.tmux").sendCommand(".2", 4) <CR>
+nnoremap <Leader>C5 :lua require("harpoon.tmux").sendCommand(".2", 5) <CR>
+nnoremap <Leader>C6 :lua require("harpoon.tmux").sendCommand(".2", 6) <CR>
+nnoremap <Leader>C7 :lua require("harpoon.tmux").sendCommand(".2", 7) <CR>
+nnoremap <Leader>C8 :lua require("harpoon.tmux").sendCommand(".2", 8) <CR>
+nnoremap <Leader>C9 :lua require("harpoon.tmux").sendCommand(".2", 9) <CR>
+nnoremap <Leader>C0 :lua require("harpoon.tmux").sendCommand(".2", 10) <CR>
+nmap <Leader>cp :lua require('harpoon.cmd-ui').toggle_quick_menu() <CR>
+lua require('harpoon-setup');
 
 " Goto Definition
 nnoremap gd :lua vim.lsp.buf.definition()<CR>

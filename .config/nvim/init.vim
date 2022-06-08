@@ -182,6 +182,7 @@ nnoremap <Leader>gt :lua require('telescope.builtin').git_stash() <CR>
 nnoremap <Leader>gc :G commit<CR>
 nnoremap <Leader>gp :G push<CR>
 
+" File navigation
 nnoremap <Leader>pm :lua require("harpoon.mark").add_file() <CR>
 nnoremap <Leader>p1 :lua require("harpoon.ui").nav_file(1) <CR>
 nnoremap <Leader>p2 :lua require("harpoon.ui").nav_file(2) <CR>
@@ -195,6 +196,8 @@ nnoremap <Leader>p9 :lua require("harpoon.ui").nav_file(9) <CR>
 nnoremap <Leader>p0 :lua require("harpoon.ui").nav_file(10) <CR>
 nnoremap <Leader>p1 :lua require("harpoon.ui").nav_file(1) <CR>
 nnoremap <Leader>pp :lua require("harpoon.ui").toggle_quick_menu() <CR>
+
+" Commands
 nnoremap <Leader>c1 :lua require("harpoon.tmux").sendCommand(".1", 1) <CR>
 nnoremap <Leader>c2 :lua require("harpoon.tmux").sendCommand(".1", 2) <CR>
 nnoremap <Leader>c3 :lua require("harpoon.tmux").sendCommand(".1", 3) <CR>
@@ -216,6 +219,7 @@ nnoremap <Leader>C8 :lua require("harpoon.tmux").sendCommand(".2", 8) <CR>
 nnoremap <Leader>C9 :lua require("harpoon.tmux").sendCommand(".2", 9) <CR>
 nnoremap <Leader>C0 :lua require("harpoon.tmux").sendCommand(".2", 10) <CR>
 nmap <Leader>cp :lua require('harpoon.cmd-ui').toggle_quick_menu() <CR>
+
 lua require('harpoon-setup');
 
 " Goto Definition

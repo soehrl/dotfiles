@@ -32,20 +32,23 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'tpope/vim-commentary'
 " Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'gruvbox-community/gruvbox'
-Plug 'neovim/nvim-lspconfig'
-" Plug 'kabouzeid/nvim-lspinstall'
-Plug 'williamboman/nvim-lsp-installer'
 Plug 'ryanoasis/vim-devicons'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 " Autocompletion
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
+
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
+
+" I always want trouble
+Plug 'folke/trouble.nvim'
 
 Plug 'tpope/vim-fugitive'
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
@@ -223,13 +226,13 @@ nmap <Leader>cp :lua require('harpoon.cmd-ui').toggle_quick_menu() <CR>
 lua require('harpoon-setup');
 
 " Goto Definition
-nnoremap gd :lua vim.lsp.buf.definition()<CR>
+" nnoremap gd :lua vim.lsp.buf.definition()<CR>
+nnoremap gd :lua require('telescope.builtin').lsp_definitions() <CR>
 
 " Code actions
+nnoremap <Leader>f :lua vim.diagnostic.open_float()<CR>
 nnoremap <Leader>c :lua vim.lsp.buf.code_action()<CR>
 
-imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
-smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
 
 " Use ctrl + backspace to 
 " inoremap <C-BS> <Esc>vbda
@@ -272,6 +275,9 @@ set clipboard+=unnamedplus
 
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 lua require('nvim-cmp-setup')
+lua require('luasnip-setup')
+imap <silent><expr> <C-Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
+
 lua require('lualine-setup');
 nmap <F11> <Plug>VimspectorStepInto
 set secure

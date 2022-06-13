@@ -2,7 +2,7 @@ local harpoon = require 'harpoon'
 local harpoon_tmux = require("harpoon.tmux")
 
 harpoon.setup({
-  -- global_settings = {
+  global_settings = {
   --   -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
   --   save_on_toggle = false,
 
@@ -10,7 +10,7 @@ harpoon.setup({
   --   save_on_change = true,
 
   --   -- sets harpoon to run the command immediately as it's passed to the terminal when calling `sendCommand`.
-  --   enter_on_sendcmd = true,
+    enter_on_sendcmd = false,
 
   --   -- closes any tmux windows harpoon that harpoon creates when you close Neovim.
   --   tmux_autoclose_windows = false,
@@ -20,7 +20,7 @@ harpoon.setup({
 
   --   -- set marks specific to each git branch inside git repository
   --   mark_branch = false,
-  -- }
+  }
 })
 
 local M = {}
@@ -29,6 +29,8 @@ function M.sendCommand(cmd_index)
   local cmd = harpoon.get_term_config().cmds[cmd_index]
 
   if cmd then
+    cmd = cmd:gsub("\\n", "\n")
+
     local colon_start, colon_end = cmd:find(":", 1, true)
     if colon_start and colon_end then
       idx = cmd:sub(1, colon_start - 1)

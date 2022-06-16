@@ -34,6 +34,7 @@ Plug 'tpope/vim-commentary'
 Plug 'gruvbox-community/gruvbox'
 Plug 'ryanoasis/vim-devicons'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'akinsho/bufferline.nvim'
 
 " Autocompletion
 Plug 'neovim/nvim-lspconfig'
@@ -267,6 +268,12 @@ let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 lua require('nvim-cmp-setup')
 lua require('luasnip-setup')
 imap <silent><expr> <C-Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
+
+lua require('bufferline-setup')
+nnoremap <silent><A-l> :BufferLineCycleNext<CR>
+nnoremap <silent><A-h> :BufferLineCyclePrev<CR>
+nnoremap <silent><A-L> :BufferLineMoveNext<CR>
+nnoremap <silent><A-H> :BufferLineMovePrev<CR>
 
 lua require('lualine-setup');
 nmap <F11> <Plug>VimspectorStepInto

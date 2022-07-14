@@ -63,6 +63,8 @@ Plug 'justinmk/vim-sneak'
 Plug 'tikhomirov/vim-glsl'
 Plug 'ThePrimeagen/harpoon'
 Plug 'rhysd/vim-grammarous'
+Plug 'ggandor/leap.nvim'
+Plug 'folke/which-key.nvim'
 call plug#end()
 
 colorscheme gruvbox
@@ -163,8 +165,8 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " Easier in-line navigation
-nmap f <Plug>Sneak_s
-nmap F <Plug>Sneak_S
+" nmap f <Plug>Sneak_s
+" nmap F <Plug>Sneak_S
 
 " Find files / buffers
 " nnoremap <C-p> :lua require('telescope').extensions.frecency.frecency() <CR>
@@ -174,7 +176,7 @@ nmap F <Plug>Sneak_S
 lua require("telescope").load_extension "file_browser"
 nnoremap <C-p> :lua require('telescope.builtin').find_files() <CR>
 nnoremap <A-p> :lua require('telescope.builtin').oldfiles() <CR>
-nnoremap <Leader>fb :lua require('telescope.builtin').buffers() <CR>
+nnoremap <Leader>B :lua require('telescope.builtin').buffers() <CR>
 nnoremap <A-/> :lua require('telescope.builtin').live_grep() <CR>
 nnoremap <Leader>e :lua require('telescope').extensions.file_browser.file_browser({ cwd = vim.fn.expand('%:p:h') }) <CR>
 nnoremap <Leader>E :lua require('telescope').extensions.file_browser.file_browser() <CR>
@@ -222,7 +224,7 @@ nnoremap gd :lua require('telescope.builtin').lsp_definitions() <CR>
 
 " Code actions
 nnoremap <Leader>f :lua vim.diagnostic.open_float()<CR>
-nnoremap <Leader>c :lua vim.lsp.buf.code_action()<CR>
+nnoremap <Leader>ca :lua vim.lsp.buf.code_action()<CR>
 
 
 " Use ctrl + backspace to 

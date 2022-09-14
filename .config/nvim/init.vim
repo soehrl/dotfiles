@@ -25,6 +25,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
@@ -102,6 +103,7 @@ nmap <Leader>dfi <Plug>VimspectorDownFrame
 " nmap <F12> <Plug>VimspectorStepOut
 
 nmap <Leader>lr :LspStop<CR>:LspStart<CR>
+nmap <Leader>q :bd<CR>
 
 " Training wheels
 " nnoremap <Left> :echo "No left for you!"<CR>
@@ -267,7 +269,7 @@ set clipboard+=unnamedplus
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 lua require('nvim-cmp-setup')
 lua require('luasnip-setup')
-imap <silent><expr> <C-Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
+imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
 
 lua require('bufferline-setup')
 nnoremap <silent><A-l> :BufferLineCycleNext<CR>
@@ -276,5 +278,4 @@ nnoremap <silent><A-L> :BufferLineMoveNext<CR>
 nnoremap <silent><A-H> :BufferLineMovePrev<CR>
 
 lua require('lualine-setup');
-nmap <F11> <Plug>VimspectorStepInto
-set secure
+lua require('nvim-tree-setup');

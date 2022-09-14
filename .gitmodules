@@ -1,0 +1,3 @@
+[submodule ".config/nvim/cpp-snippets"]
+	path = .config/nvim/cpp-snippets
+	url = git@github.com:marcelkrueger/cpp-snippets.git

@@ -31,11 +31,11 @@ function M.sendCommand(cmd_index)
   if cmd then
     cmd = cmd:gsub("\\n", "\n")
 
-    local colon_start, colon_end = cmd:find(":", 1, true)
+    local colon_start, colon_end = cmd:find("#", 1, true)
     if colon_start and colon_end then
       idx = cmd:sub(1, colon_start - 1)
       real_cmd = cmd:sub(colon_end + 1)
-      harpoon_tmux.sendCommand("." .. idx, real_cmd)
+      harpoon_tmux.sendCommand(idx, real_cmd)
     end
   end
 

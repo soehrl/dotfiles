@@ -25,7 +25,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'kyazdani42/nvim-tree.lua'
+" Plug 'kyazdani42/nvim-tree.lua'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
@@ -66,6 +66,7 @@ Plug 'ThePrimeagen/harpoon'
 Plug 'rhysd/vim-grammarous'
 Plug 'ggandor/leap.nvim'
 Plug 'folke/which-key.nvim'
+Plug 'dcharbon/vim-flatbuffers'
 call plug#end()
 
 colorscheme gruvbox
@@ -224,9 +225,11 @@ nmap <Leader>cp :lua require('harpoon.cmd-ui').toggle_quick_menu() <CR>
 " nnoremap gd :lua vim.lsp.buf.definition()<CR>
 nnoremap gd :lua require('telescope.builtin').lsp_definitions() <CR>
 
-" Code actions
-nnoremap <Leader>f :lua vim.diagnostic.open_float()<CR>
-nnoremap <Leader>ca :lua vim.lsp.buf.code_action()<CR>
+nnoremap <Leader>lf :lua vim.diagnostic.open_float()<CR>
+nnoremap <Leader>la :lua vim.lsp.buf.code_action()<CR>
+nnoremap <Leader>ld :lua vim.lsp.buf.hover()<CR>
+nnoremap <Leader>lr :lua vim.lsp.buf.references()<CR>
+nnoremap <Leader>li :lua vim.lsp.buf.implementation()<CR>
 
 
 " Use ctrl + backspace to 
@@ -280,4 +283,4 @@ nnoremap <silent><A-L> :BufferLineMoveNext<CR>
 nnoremap <silent><A-H> :BufferLineMovePrev<CR>
 
 lua require('lualine-setup');
-lua require('nvim-tree-setup');
+" lua require('nvim-tree-setup');

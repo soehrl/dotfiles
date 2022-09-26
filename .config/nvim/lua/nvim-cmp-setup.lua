@@ -80,7 +80,7 @@ lsp_installer.on_server_ready(function(server)
     -- (optional) Customize the options passed to the server
     if server.name == "clangd" then
         -- opts.root_dir = function() ... end
-        opts.cmd = { "clangd", "--clang-tidy" }
+        opts.cmd = { "clangd", "--clang-tidy", "--completion-style=detailed" }
     end
 
     -- This setup() function will take the provided server configuration and decorate it with the necessary properties

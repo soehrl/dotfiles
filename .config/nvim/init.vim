@@ -230,6 +230,7 @@ nnoremap <Leader>la :lua vim.lsp.buf.code_action()<CR>
 nnoremap <Leader>ld :lua vim.lsp.buf.hover()<CR>
 nnoremap <Leader>lr :lua vim.lsp.buf.references()<CR>
 nnoremap <Leader>li :lua vim.lsp.buf.implementation()<CR>
+nnoremap <Leader>lw :ClangdSwitchSourceHeader<CR>
 
 
 " Use ctrl + backspace to 

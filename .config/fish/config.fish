@@ -6,3 +6,5 @@ if status is-interactive
 and not set -q TMUX
     exec tmux
 end
+
+source $HOME/.config/fish/custom_config.fish

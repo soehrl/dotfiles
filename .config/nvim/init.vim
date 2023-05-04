@@ -4,7 +4,7 @@ set exrc " Allow project specific vimrc files
 set scrolloff=8
 set incsearch
 set nohlsearch
-set tabstop=2 shiftwidth=2 expandtab
+set tabstop=4 shiftwidth=4 expandtab
 set hidden
 set noerrorbells
 set nowrap
@@ -67,6 +67,7 @@ Plug 'rhysd/vim-grammarous'
 Plug 'ggandor/leap.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'dcharbon/vim-flatbuffers'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 call plug#end()
 
 colorscheme gruvbox
@@ -74,15 +75,15 @@ colorscheme gruvbox
 let mapleader=" "
 
 " Language tool:
-let g:grammarous#use_vim_spelllang
-nmap <Leader>lc :GrammarousCheck<CR>
-nmap <Leader>lq <Plug>(grammarous-reset)
-nmap <Leader>lw <Plug>(grammarous-open-info-window)
-nmap <buffer><Leader>lf <Plug>(grammarous-fixit)
-nmap <buffer><Leader>li <Plug>(grammarous-remove-error)
-nmap <buffer><Leader>ln <Plug>(grammarous-move-to-next-error)
-nmap <buffer><Leader>lp <Plug>(grammarous-move-to-previous-error)
-let g:grammarous#hooks = {}
+" let g:grammarous#use_vim_spelllang
+" nmap <Leader>lc :GrammarousCheck<CR>
+" nmap <Leader>lq <Plug>(grammarous-reset)
+" nmap <Leader>lw <Plug>(grammarous-open-info-window)
+" nmap <buffer><Leader>lf <Plug>(grammarous-fixit)
+" nmap <buffer><Leader>li <Plug>(grammarous-remove-error)
+" nmap <buffer><Leader>ln <Plug>(grammarous-move-to-next-error)
+" nmap <buffer><Leader>lp <Plug>(grammarous-move-to-previous-error)
+" let g:grammarous#hooks = {}
 " function! g:grammarous#hooks.on_check(errs) abort
 " endfunction
 
@@ -225,7 +226,9 @@ nmap <Leader>cp :lua require('harpoon.cmd-ui').toggle_quick_menu() <CR>
 " nnoremap gd :lua vim.lsp.buf.definition()<CR>
 nnoremap gd :lua require('telescope.builtin').lsp_definitions() <CR>
 
-nnoremap <Leader>lf :lua vim.diagnostic.open_float()<CR>
+nnoremap <Leader>le :lua vim.diagnostic.open_float()<CR>
+nnoremap <Leader>lf :lua vim.lsp.buf.format { async = true }<CR>
+vnoremap <Leader>lf :lua vim.lsp.buf.format { async = true }<CR>
 nnoremap <Leader>la :lua vim.lsp.buf.code_action()<CR>
 nnoremap <Leader>ld :lua vim.lsp.buf.hover()<CR>
 nnoremap <Leader>lr :lua vim.lsp.buf.references()<CR>

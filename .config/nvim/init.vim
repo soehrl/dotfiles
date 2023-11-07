@@ -38,8 +38,9 @@ Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'akinsho/bufferline.nvim'
 
 " Autocompletion
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/nvim-lsp-installer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -68,6 +69,7 @@ Plug 'ggandor/leap.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'dcharbon/vim-flatbuffers'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+Plug 'github/copilot.vim'
 call plug#end()
 
 colorscheme gruvbox
@@ -134,6 +136,16 @@ nnoremap <silent><A-O> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 map <C-f> :py3f ~/.config/nvim/clang-format.py<cr>
 " nmap <A-f> ggVG:py3f ~/.config/nvim/clang-format.py<cr>
 imap <C-f> <Esc>:py3f ~/.config/nvim/clang-format.py<cr>i
+
+" Copilot
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+imap <silent><script><expr> <C-K> copilot#Reject("\<CR>")
+imap <silent><script><expr> <C-L> copilot#Skip("\<CR>")
+imap <silent><script><expr> <C-H> copilot#Cancel("\<CR>")
+imap <silent><script><expr> <C-D> copilot#Delete("\<CR>")
+imap <silent><script><expr> <C-U> copilot#Undo("\<CR>")
+imap <silent><script><expr> <C-R> copilot#Redo("\<CR>")
+let g:copilot_no_tab_map = v:true
 
 " make Y normal
 nmap Y y$
@@ -231,9 +243,13 @@ nnoremap <Leader>lf :lua vim.lsp.buf.format { async = true }<CR>
 vnoremap <Leader>lf :lua vim.lsp.buf.format { async = true }<CR>
 nnoremap <Leader>la :lua vim.lsp.buf.code_action()<CR>
 nnoremap <Leader>ld :lua vim.lsp.buf.hover()<CR>
-nnoremap <Leader>lr :lua vim.lsp.buf.references()<CR>
+nnoremap <Leader>lr :lua vim.lsp.buf.rename()<CR>
+nnoremap <Leader>lt :lua vim.lsp.buf.references()<CR>
 nnoremap <Leader>li :lua vim.lsp.buf.implementation()<CR>
 nnoremap <Leader>lw :ClangdSwitchSourceHeader<CR>
+
+lua require("mason").setup()
+lua require("mason-lspconfig").setup()
 
 
 " Use ctrl + backspace to 

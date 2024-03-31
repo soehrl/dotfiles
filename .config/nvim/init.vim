@@ -109,7 +109,7 @@ nmap <Leader>dfi <Plug>VimspectorDownFrame
 " nmap <F12> <Plug>VimspectorStepOut
 
 nmap <Leader>lr :LspStop<CR>:LspStart<CR>
-nmap <Leader>q :bd<CR>
+nmap <Leader>w :bd<CR>
 
 " Training wheels
 " nnoremap <Left> :echo "No left for you!"<CR>
@@ -179,6 +179,13 @@ nnoremap J :m +1<CR>==
 nnoremap K :m -2<CR>==
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
+" Quick fix list
+nnoremap <Leader>qq :copen<CR>
+nnoremap <Leader>qc :cclose<CR>
+nnoremap <Leader>qj :cnext<CR>
+nnoremap <Leader>qk :cprev<CR>
+
 
 " Easier in-line navigation
 " nmap f <Plug>Sneak_s

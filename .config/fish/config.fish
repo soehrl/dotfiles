@@ -13,3 +13,6 @@ source $HOME/.config/fish/custom_config.fish
 set -gx CPM_SOURCE_CACHE $HOME/.cpm
 set -gx PATH $PATH:$HOME/.local/bin
 set -gx PATH $PATH:$HOME/.cargo/bin
+
+alias xcopy="xclip -sel clip"
+setxkbmap eu

@@ -68,7 +68,6 @@ Plug 'rhysd/vim-grammarous'
 Plug 'ggandor/leap.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'dcharbon/vim-flatbuffers'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'github/copilot.vim'
 call plug#end()
 

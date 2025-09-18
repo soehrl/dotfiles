@@ -53,6 +53,10 @@ Plug 'saadparwaiz1/cmp_luasnip'
 " I always want trouble
 Plug 'folke/trouble.nvim'
 
+Plug 'akinsho/toggleterm.nvim'
+Plug 'stevearc/overseer.nvim'
+Plug 'Civitasv/cmake-tools.nvim'
+
 Plug 'tpope/vim-fugitive'
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 Plug 'puremourning/vimspector'
@@ -185,6 +189,14 @@ nnoremap <Leader>qc :cclose<CR>
 nnoremap <Leader>qj :cnext<CR>
 nnoremap <Leader>qk :cprev<CR>
 
+nnoremap <Leader>t :ToggleTerm<CR>
+tnoremap <Esc> <C-\><C-n>
+
+" CMake bindings
+nnoremap <Leader>cmr :CMakeRun<CR>
+nnoremap <Leader>cmb :CMakeBuild<CR>
+nnoremap <Leader>cmc :CMakeOpenCache<CR>
+
 
 " Easier in-line navigation
 " nmap f <Plug>Sneak_s
@@ -309,4 +321,7 @@ nnoremap <silent><A-L> :BufferLineMoveNext<CR>
 nnoremap <silent><A-H> :BufferLineMovePrev<CR>
 
 lua require('lualine-setup');
+lua require('overseer').setup();
+lua require('toggleterm').setup();
+lua require('cmake-tools-setup');
 " lua require('nvim-tree-setup');

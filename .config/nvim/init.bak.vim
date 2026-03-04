@@ -20,6 +20,9 @@ set shortmess+=c
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
+" Startup theme
+Plug 'goolord/alpha-nvim'
+
 Plug 'wellle/targets.vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -73,6 +76,7 @@ Plug 'ggandor/leap.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'dcharbon/vim-flatbuffers'
 Plug 'github/copilot.vim'
+Plug 'esensar/nvim-dev-container'
 call plug#end()
 
 colorscheme gruvbox

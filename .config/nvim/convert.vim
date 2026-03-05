@@ -5,52 +5,31 @@ call plug#begin('~/.vim/plugged')
 Plug 'wellle/targets.vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
 " Plug 'kyazdani42/nvim-tree.lua'
-Plug 'tpope/vim-commentary'
 " Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
-Plug 'akinsho/bufferline.nvim'
-
-" Autocompletion
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
 
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
-
-" I always want trouble
-Plug 'folke/trouble.nvim'
 
 Plug 'akinsho/toggleterm.nvim'
 Plug 'stevearc/overseer.nvim'
 Plug 'Civitasv/cmake-tools.nvim'
 
-Plug 'tpope/vim-fugitive'
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 Plug 'puremourning/vimspector'
 Plug 'lambdalisue/suda.vim'
 Plug 'tami5/sql.nvim'
 Plug 'rhysd/vim-clang-format'
-Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
 " Plug 'justinmk/vim-sneak'
 Plug 'tikhomirov/vim-glsl'
 Plug 'ThePrimeagen/harpoon'
 Plug 'rhysd/vim-grammarous'
 Plug 'ggandor/leap.nvim'
-Plug 'folke/which-key.nvim'
 Plug 'dcharbon/vim-flatbuffers'
 Plug 'github/copilot.vim'
-Plug 'esensar/nvim-dev-container'
 call plug#end()
 
 let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
@@ -68,45 +47,16 @@ nmap <Leader>dfi <Plug>VimspectorDownFrame
 " nmap <F12> <Plug>VimspectorStepOut
 
 nmap <Leader>lr :LspStop<CR>:LspStart<CR>
-nmap <Leader>w :bd<CR>
 
 " Insert lines
 nnoremap <silent><A-o> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><A-O> :set paste<CR>m`O<Esc>``:set nopaste<CR>
-
-" Copilot
-imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
-imap <silent><script><expr> <C-K> copilot#Reject("\<CR>")
-imap <silent><script><expr> <C-L> copilot#Skip("\<CR>")
-imap <silent><script><expr> <C-H> copilot#Cancel("\<CR>")
-imap <silent><script><expr> <C-D> copilot#Delete("\<CR>")
-imap <silent><script><expr> <C-U> copilot#Undo("\<CR>")
-imap <silent><script><expr> <C-R> copilot#Redo("\<CR>")
-let g:copilot_no_tab_map = v:true
 
 " (Un-)comment lines
 autocmd FileType h setlocal commentstring=//\ %s
 autocmd FileType c setlocal commentstring=//\ %s
 autocmd FileType hpp setlocal commentstring=//\ %s
 autocmd FileType cpp setlocal commentstring=//\ %s
-nmap <C-_> gcc
-vmap <C-_> gc
-
-" Keep selection after indenting
-vnoremap < <gv
-vnoremap > >gv
-
-" Move line(s) up and down with J / K 
-nnoremap J :m +1<CR>==
-nnoremap K :m -2<CR>==
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
-" Quick fix list
-nnoremap <Leader>qq :copen<CR>
-nnoremap <Leader>qc :cclose<CR>
-nnoremap <Leader>qj :cnext<CR>
-nnoremap <Leader>qk :cprev<CR>
 
 nnoremap <Leader>t :ToggleTerm<CR>
 tnoremap <Esc> <C-\><C-n>
@@ -123,17 +73,6 @@ nnoremap <Leader>cmc :CMakeOpenCache<CR>
 
 " Find files / buffers
 " nnoremap <C-p> :lua require('telescope').extensions.frecency.frecency() <CR>
-"
-" currently contains only bullshit:
-" lua require('telescope-setup')
-nnoremap <A-p> :lua require('telescope.builtin').oldfiles() <CR>
-
-nnoremap <Leader>gs :G<CR>
-nnoremap <Leader>gl :lua require('telescope.builtin').git_commits() <CR>
-nnoremap <Leader>gb :lua require('telescope.builtin').git_branches() <CR>
-nnoremap <Leader>gt :lua require('telescope.builtin').git_stash() <CR>
-nnoremap <Leader>gc :G commit<CR>
-nnoremap <Leader>gp :G push<CR>
 
 " File navigation
 nnoremap <Leader>pm :lua require("harpoon.mark").add_file() <CR>
@@ -165,23 +104,6 @@ nnoremap <Leader>c9 :lua require('harpoon-setup').sendCommand(9)<CR>
 nnoremap <Leader>c0 :lua require('harpoon-setup').sendCommand(10)<CR>
 nmap <Leader>cp :lua require('harpoon.cmd-ui').toggle_quick_menu() <CR>
 
-" Goto Definition
-" nnoremap gd :lua vim.lsp.buf.definition()<CR>
-nnoremap gd :lua require('telescope.builtin').lsp_definitions() <CR>
-
-nnoremap <Leader>le :lua vim.diagnostic.open_float()<CR>
-nnoremap <Leader>lf :lua vim.lsp.buf.format { async = true }<CR>
-vnoremap <Leader>lf :lua vim.lsp.buf.format { async = true }<CR>
-nnoremap <Leader>la :lua vim.lsp.buf.code_action()<CR>
-nnoremap <Leader>ld :lua vim.lsp.buf.hover()<CR>
-nnoremap <Leader>lr :lua vim.lsp.buf.rename()<CR>
-nnoremap <Leader>lt :lua vim.lsp.buf.references()<CR>
-nnoremap <Leader>li :lua vim.lsp.buf.implementation()<CR>
-nnoremap <Leader>lw :ClangdSwitchSourceHeader<CR>
-
-lua require("mason").setup()
-lua require("mason-lspconfig").setup()
-
 
 " Use ctrl + backspace to 
 " inoremap <C-BS> <Esc>vbda
@@ -204,23 +126,6 @@ lua require("mason-lspconfig").setup()
 
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
-" Set up win32 yanking
-" TODO: this should only be enabled on windows
-" set clipboard+=unnamedplus
-" let g:clipboard = {
-"           \   'name': 'wanking',
-"           \   'copy': {
-"           \      '+': 'wank.exe -i --crlf',
-"           \      '*': 'wank.exe -i --crlf',
-"           \    },
-"           \   'paste': {
-"           \      '+': 'wank.exe -o --lf',
-"           \      '*': 'wank.exe -o --lf',
-"           \   },
-"           \   'cache_enabled': 0,
-"           \ }
-" Yanking now also copies to clipboard
-set clipboard+=unnamedplus
 
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 lua require('nvim-cmp-setup')
@@ -233,7 +138,6 @@ nnoremap <silent><A-h> :BufferLineCyclePrev<CR>
 nnoremap <silent><A-L> :BufferLineMoveNext<CR>
 nnoremap <silent><A-H> :BufferLineMovePrev<CR>
 
-lua require('lualine-setup');
 lua require('overseer').setup();
 lua require('toggleterm').setup();
 lua require('cmake-tools-setup');

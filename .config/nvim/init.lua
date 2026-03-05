@@ -1,5 +1,6 @@
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
   local out = vim.fn.system({ 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath })
@@ -60,6 +61,24 @@ vim.g.mapleader = ' '
 
 -- Set local leader (need for lazy.vim)
 -- vim.g.mapleader = ','
+
+-- Yanking now also copies to clipboard
+vim.o.clipboard = vim.o.clipboard .. 'unnamedplus'
+-- " Set up win32 yanking
+-- " TODO: this should only be enabled on windows
+-- " set clipboard+=unnamedplus
+-- " let g:clipboard = {
+-- "           \   'name': 'wanking',
+-- "           \   'copy': {
+-- "           \      '+': 'wank.exe -i --crlf',
+-- "           \      '*': 'wank.exe -i --crlf',
+-- "           \    },
+-- "           \   'paste': {
+-- "           \      '+': 'wank.exe -o --lf',
+-- "           \      '*': 'wank.exe -o --lf',
+-- "           \   },
+-- "           \   'cache_enabled': 0,
+-- "           \ }
 
 require('config.keymappings')
 

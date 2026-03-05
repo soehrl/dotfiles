@@ -132,12 +132,6 @@ lua require('nvim-cmp-setup')
 lua require('luasnip-setup')
 imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
 
-lua require('bufferline-setup')
-nnoremap <silent><A-l> :BufferLineCycleNext<CR>
-nnoremap <silent><A-h> :BufferLineCyclePrev<CR>
-nnoremap <silent><A-L> :BufferLineMoveNext<CR>
-nnoremap <silent><A-H> :BufferLineMovePrev<CR>
-
 lua require('overseer').setup();
 lua require('toggleterm').setup();
 lua require('cmake-tools-setup');

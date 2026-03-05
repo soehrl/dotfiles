@@ -25,7 +25,6 @@ Plug 'rhysd/vim-clang-format'
 Plug 'nvim-treesitter/playground'
 " Plug 'justinmk/vim-sneak'
 Plug 'tikhomirov/vim-glsl'
-Plug 'ThePrimeagen/harpoon'
 Plug 'rhysd/vim-grammarous'
 Plug 'ggandor/leap.nvim'
 Plug 'dcharbon/vim-flatbuffers'
@@ -73,37 +72,6 @@ nnoremap <Leader>cmc :CMakeOpenCache<CR>
 
 " Find files / buffers
 " nnoremap <C-p> :lua require('telescope').extensions.frecency.frecency() <CR>
-
-" File navigation
-nnoremap <Leader>pm :lua require("harpoon.mark").add_file() <CR>
-nnoremap <Leader>p1 :lua require("harpoon.ui").nav_file(1) <CR>
-nnoremap <Leader>p2 :lua require("harpoon.ui").nav_file(2) <CR>
-nnoremap <Leader>p3 :lua require("harpoon.ui").nav_file(3) <CR>
-nnoremap <Leader>p4 :lua require("harpoon.ui").nav_file(4) <CR>
-nnoremap <Leader>p5 :lua require("harpoon.ui").nav_file(5) <CR>
-nnoremap <Leader>p6 :lua require("harpoon.ui").nav_file(6) <CR>
-nnoremap <Leader>p7 :lua require("harpoon.ui").nav_file(7) <CR>
-nnoremap <Leader>p8 :lua require("harpoon.ui").nav_file(8) <CR>
-nnoremap <Leader>p9 :lua require("harpoon.ui").nav_file(9) <CR>
-nnoremap <Leader>p0 :lua require("harpoon.ui").nav_file(10) <CR>
-nnoremap <Leader>p1 :lua require("harpoon.ui").nav_file(1) <CR>
-nnoremap <Leader>pp :lua require("harpoon.ui").toggle_quick_menu() <CR>
-
-" Commands
-lua require('harpoon-setup')
-
-nnoremap <Leader>c1 :lua require('harpoon-setup').sendCommand(1)<CR>
-nnoremap <Leader>c2 :lua require('harpoon-setup').sendCommand(2)<CR>
-nnoremap <Leader>c3 :lua require('harpoon-setup').sendCommand(3)<CR>
-nnoremap <Leader>c4 :lua require('harpoon-setup').sendCommand(4)<CR>
-nnoremap <Leader>c5 :lua require('harpoon-setup').sendCommand(5)<CR>
-nnoremap <Leader>c6 :lua require('harpoon-setup').sendCommand(6)<CR>
-nnoremap <Leader>c7 :lua require('harpoon-setup').sendCommand(7)<CR>
-nnoremap <Leader>c8 :lua require('harpoon-setup').sendCommand(8)<CR>
-nnoremap <Leader>c9 :lua require('harpoon-setup').sendCommand(9)<CR>
-nnoremap <Leader>c0 :lua require('harpoon-setup').sendCommand(10)<CR>
-nmap <Leader>cp :lua require('harpoon.cmd-ui').toggle_quick_menu() <CR>
-
 
 " Use ctrl + backspace to 
 " inoremap <C-BS> <Esc>vbda

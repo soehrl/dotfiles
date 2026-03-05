@@ -103,4 +103,3 @@ imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-o
 lua require('overseer').setup();
 lua require('toggleterm').setup();
 lua require('cmake-tools-setup');
-" lua require('nvim-tree-setup');

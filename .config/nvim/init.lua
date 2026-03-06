@@ -62,6 +62,8 @@ vim.g.mapleader = ' '
 -- Set local leader (need for lazy.vim)
 -- vim.g.mapleader = ','
 
+vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
+
 -- Yanking now also copies to clipboard
 vim.o.clipboard = vim.o.clipboard .. 'unnamedplus'
 -- " Set up win32 yanking

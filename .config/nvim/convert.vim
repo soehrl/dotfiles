@@ -95,7 +95,6 @@ nnoremap <Leader>cmc :CMakeOpenCache<CR>
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 lua require('nvim-cmp-setup')
 lua require('luasnip-setup')
 imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 

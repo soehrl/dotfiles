@@ -18,7 +18,6 @@ Plug 'stevearc/overseer.nvim'
 Plug 'Civitasv/cmake-tools.nvim'
 
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
-Plug 'puremourning/vimspector'
 Plug 'lambdalisue/suda.vim'
 Plug 'tami5/sql.nvim'
 Plug 'rhysd/vim-clang-format'
@@ -28,22 +27,7 @@ Plug 'tikhomirov/vim-glsl'
 Plug 'rhysd/vim-grammarous'
 Plug 'ggandor/leap.nvim'
 Plug 'dcharbon/vim-flatbuffers'
-Plug 'github/copilot.vim'
 call plug#end()
-
-let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
-nmap <Leader>dx :VimspectorReset<CR>
-xmap <Leader>dx :VimspectorReset<CR>
-
-" for normal mode - the word under the cursor
-nmap <Leader>di <Plug>VimspectorBalloonEval
-" for visual mode, the visually selected text
-xmap <Leader>di <Plug>VimspectorBalloonEval
-
-nmap <Leader>dfo <Plug>VimspectorUpFrame
-nmap <Leader>dfi <Plug>VimspectorDownFrame
-" nmap <F11> <Plug>VimspectorStepInto
-" nmap <F12> <Plug>VimspectorStepOut
 
 nmap <Leader>lr :LspStop<CR>:LspStart<CR>
 

@@ -7,6 +7,7 @@ return {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             'hrsh7th/cmp-cmdline',
+            'saadparwaiz1/cmp_luasnip',
         },
         opts = function()
             -- Register nvim-cmp lsp capabilities
@@ -18,6 +19,7 @@ return {
               snippet = {
                 -- REQUIRED - you must specify a snippet engine
                 expand = function(args)
+                    print('Expanding snippet with body: ' .. args.body)
                   -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
                   require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
                   -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
@@ -63,5 +65,12 @@ return {
     {
         'L3MON4D3/LuaSnip',
         opts = {},
+        init = function()
+            local ls = require 'luasnip'
+            ls.add_snippets('rust', {
+                ls.parser.parse_snippet('OvisFoo', '[[ this is the foo ]]'),
+            })
+            print('LuaSnip initialized')
+        end,
     },
 }

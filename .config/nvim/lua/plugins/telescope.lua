@@ -22,6 +22,6 @@ return {
       { 'gd', function() require('telescope.builtin').lsp_definitions() end, desc = 'Go to definition' },
       { '<Leader>lt', function() require('telescope.builtin').lsp_references() end, desc = 'Find references (telescope)' },
       { '<Leader>li', function() require('telescope.builtin').lsp_implementations() end, desc = 'Go to implementation (telescope)' },
-      { '<Leader>t', function() require('telescope.builtin').resume() end, desc = 'Go to implementation (telescope)' },
+      { '<Leader>r', function() require('telescope.builtin').resume() end, desc = 'Go to implementation (telescope)' },
     },
 }

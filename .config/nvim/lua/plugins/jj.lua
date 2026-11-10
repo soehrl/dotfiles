@@ -11,6 +11,15 @@ return {
               type = "tab",
             },
           },
+          -- Configure diff module
+          diff = {
+            -- Default backend for viewing diffs
+            -- "native" - Built-in split diff using Neovim's diff mode (default)
+            -- "diffview" - Use diffview.nvim plugin (requires diffview.nvim)
+            -- "codediff" - Use codediff.nvim plugin (requires codediff.nvim)
+            -- Or any custom backend name you've registered
+            backend = "codediff",
+          },
           terminal = {
             window = {
               type = "floating",

@@ -60,7 +60,7 @@ vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.g.mapleader = ' '
 
 -- Set local leader (need for lazy.vim)
--- vim.g.mapleader = ','
+vim.g.maplocalleader = ','
 
 vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
 

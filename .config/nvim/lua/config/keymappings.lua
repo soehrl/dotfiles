@@ -35,3 +35,15 @@ vim.keymap.set('n', '<Leader>lf', function() vim.lsp.buf.format({ async = true }
 vim.keymap.set('n', '<Leader>la', function() vim.lsp.buf.code_action() end)
 vim.keymap.set('n', '<Leader>ld', function() vim.lsp.buf.hover() end)
 vim.keymap.set('n', '<Leader>lr', function() vim.lsp.buf.rename() end)
+vim.keymap.set('n', '<Leader>lq', function()
+    vim.diagnostic.setqflist({
+        open = true,
+        severity = vim.diagnostic.severity.ERROR,
+    })
+end, { desc = 'LSP errors in quickfix list' })
+vim.keymap.set('n', '<Leader>lwq', function()
+    vim.diagnostic.setqflist({
+        open = true,
+        severity = vim.diagnostic.severity.WARNING,
+    })
+end, { desc = 'LSP warnings in quickfix list' })
